@@ -77,8 +77,8 @@ def run():
     st.write("Ayo beritahu apa yang anda mau")
     
     with st.sidebar:
-        if st.button("⬅ Kembali ke Beranda"):
-            st.switch_page("app.py")
+        if st.button("⬅ Kembali ke Beranda"):s
+            st.session_state["halaman"] = "utama"
             
     # Inisialisasi Google AI
     model = init_google_ai()
