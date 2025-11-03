@@ -65,10 +65,6 @@ def run_matematika():
     
     # Teks pembuka
     st.write("Memecahkan soal Matematika anda")
-    
-    with st.sidebar:
-        if st.button("⬅ Kembali ke Beranda"):
-            st.switch_page("app.py")
             
     # Inisialisasi Google AI
     model = init_google_ai()
@@ -91,4 +87,5 @@ def run_matematika():
             st.info(hasil_konten)
 
 if __name__ == "__main__":
+
     run()
