@@ -1,4 +1,4 @@
-import streamlit as st
+taimport streamlit as st
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -49,7 +49,7 @@ def run():
             st.session_state["utama"] = "info"
 
         if st.button("📰 Buat Cerita"):
-            st.session_state["halaman"] = "info"
+            st.session_state["halaman"] = "cerita"
 
         if st.button("🧮 Hitung Matematika"):
             st.session_state["halaman"] = "matematika"
@@ -64,7 +64,7 @@ def run():
     if halaman == "utama":
         from pages.info import run_info
         run_info()
-    elif halaman == "info":
+    elif halaman == "cerita":
         from pages.info import run_cerita
         run_cerita()
     elif halaman == "matematika":
@@ -78,6 +78,7 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
 
 
