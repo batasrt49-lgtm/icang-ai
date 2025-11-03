@@ -58,7 +58,7 @@ def generate_content(topic, model):
     except Exception as e:
         return f"❌ Terjadi error saat generate konten: {str(e)}"
 
-def run():
+def run_info():
     """
     Stage 4: Add AI Integration
     Menambahkan integrasi penuh dengan Google Gemini AI
@@ -77,7 +77,7 @@ def run():
     st.write("Ayo beritahu apa yang anda mau")
     
     with st.sidebar:
-        if st.button("⬅ Kembali ke Beranda"):s
+        if st.button("⬅ Kembali ke Beranda"):
             st.session_state["halaman"] = "utama"
             
     # Inisialisasi Google AI

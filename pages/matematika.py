@@ -48,7 +48,7 @@ def generate_content(topic, model):
     except Exception as e:
         return f"❌ Terjadi error saat menghitung : {str(e)}"
 
-def run():
+def run_matematika():
     """
     Stage 4: Add AI Integration
     Menambahkan integrasi penuh dengan Google Gemini AI
