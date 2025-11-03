@@ -46,6 +46,9 @@ def run():
 
         # Pakai session_state untuk pindah halaman
         if st.button("📰 Cari Berita"):
+            st.session_state["utama"] = "info"
+
+        if st.button("📰 Buat Cerita"):
             st.session_state["halaman"] = "info"
 
         if st.button("🧮 Hitung Matematika"):
@@ -59,11 +62,11 @@ def run():
     halaman = st.session_state.get("halaman", "utama")
 
     if halaman == "utama":
-        st.text_input("📝 Ketik perintah untuk AI di sini:")
-        st.info("Gunakan tombol di sidebar untuk pindah halaman.")
-    elif halaman == "info":
         from pages.info import run_info
         run_info()
+    elif halaman == "info":
+        from pages.info import run_cerita
+        run_cerita()
     elif halaman == "matematika":
         from pages.matematika import run_matematika
         run_matematika()
@@ -75,6 +78,7 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
 
 
