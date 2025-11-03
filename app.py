@@ -74,26 +74,9 @@ def run():
     model = init_google_ai()
     
     st.divider()
-    
-    # Input teks dari user
-    user_topic = st.text_input(
-        "📝 Masukkan judul cerita:",
-        placeholder="Contoh: Teror pocong merah, Main bareng teman, dll."
-    )
-    
-    # Tombol untuk generate konten
-    if st.button("🔥 Generate Konten", type="primary"):
-        if not user_topic.strip():
-            st.warning("⚠ Mohon masukkan topik terlebih dahulu!")
-        else:
-            # Generate konten menggunakan AI
-            with st.spinner("🤖 AI sedang bekerja keras membuat Cerita untuk Anda..."):
-                hasil_konten = generate_content(user_topic, model, length, genre)
-            
-            st.subheader("🤖 Hasil Cerita :")
-            st.info(hasil_konten)
 
 if __name__ == "__main__":
     run()
+
 
 
