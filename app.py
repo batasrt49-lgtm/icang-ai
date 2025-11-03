@@ -39,12 +39,6 @@ def run():
         page_icon="🚀"
     )
     
-    # Judul aplikasi
-    st.title("AI MY Kisah Generator 🚀")
-    
-    # Teks pembuka
-    st.write("Anda bisa generate Cerita yang anda mau dengan judul dan genre yang dapat di sesuaikan")
-    
     with st.sidebar:
         st.title("📂 Navigasi")
         st.divider()
@@ -81,19 +75,6 @@ def run():
     
     st.divider()
     
-    col1,col2 = st.columns(2)
-
-    with col1:
-        length = st.slider(
-            "Pilih panjang konten",
-            min_value=200,
-            max_value=500,
-            value=100,
-            step=10
-        )
-    with col2:
-        genre = st.selectbox("Pilih AI Generate :", ["Horror", "Komedi", "Serius"])
-
     # Input teks dari user
     user_topic = st.text_input(
         "📝 Masukkan judul cerita:",
@@ -114,4 +95,5 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
