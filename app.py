@@ -77,17 +77,16 @@ def run():
     st.write("Anda bisa generate Cerita yang anda mau dengan judul dan genre yang dapat di sesuaikan")
     
     with st.sidebar:
-        st.title("ICANG AI")
+        st.title("📂 Navigasi")
         st.divider()
-        st.write("Pilih AI anda")
-        if st.button("📰 Cari berita"):
-            st.switch_page("info.py")
+        st.write("Pilih halaman:")
 
-        if st.button("📚 Buat Cerita"):
-            st.switch_page("app.py")
+        if st.button("📰 Cari Berita"):
+            st.switch_page("pages/info.py")
 
         if st.button("🧮 Hitung Matematika"):
-            st.switch_page("matematika.py")
+            st.switch_page("pages/matematika.py")
+
         st.divider()
             
     # Inisialisasi Google AI
