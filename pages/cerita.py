@@ -58,7 +58,7 @@ def generate_content(topic, model, length, genre):
     except Exception as e:
         return f"❌ Terjadi error saat generate konten: {str(e)}"
 
-def run():
+def run_cerita():
     """
     Stage 4: Add AI Integration
     Menambahkan integrasi penuh dengan Google Gemini AI
