@@ -81,11 +81,29 @@ def run():
         st.divider()
         st.write("Pilih halaman:")
 
+        # Pakai session_state untuk pindah halaman
         if st.button("📰 Cari Berita"):
-            st.switch_page("pages/info.py")
+            st.session_state["halaman"] = "info"
 
         if st.button("🧮 Hitung Matematika"):
-            st.switch_page("pages/matematika.py")
+            st.session_state["halaman"] = "matematika"
+
+        st.divider()
+
+    model = init_google_ai()
+
+    # Routing manual
+    halaman = st.session_state.get("halaman", "utama")
+
+    if halaman == "utama":
+        st.text_input("📝 Ketik perintah untuk AI di sini:")
+        st.info("Gunakan tombol di sidebar untuk pindah halaman.")
+    elif halaman == "info":
+        from pages.info import run_info
+        run_info()
+    elif halaman == "matematika":
+        from pages.matematika import run_matematika
+        run_matematika()
 
         st.divider()
             
