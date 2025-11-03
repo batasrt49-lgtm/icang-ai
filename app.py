@@ -51,7 +51,7 @@ def run():
         from pages.info import run_info
         run_info()
     elif halaman == "cerita":
-        from pages.info import run_cerita
+        from pages.cerita import run_cerita
         run_cerita()
     elif halaman == "matematika":
         from pages.matematika import run_matematika
@@ -61,3 +61,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+
