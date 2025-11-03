@@ -75,9 +75,7 @@ def run_cerita():
     
     # Teks pembuka
     st.write("Anda bisa generate Cerita yang anda mau dengan judul dan genre yang dapat di sesuaikan")
-    
-    model = init_google_ai()
-            
+
     # Inisialisasi Google AI
     model = init_google_ai()
     
