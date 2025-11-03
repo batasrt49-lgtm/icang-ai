@@ -72,11 +72,10 @@ def run():
             
     # Inisialisasi Google AI
     model = init_google_ai()
-    
-    st.divider()
 
 if __name__ == "__main__":
     run()
+
 
 
 
