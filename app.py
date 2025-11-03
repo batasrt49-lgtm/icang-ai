@@ -26,7 +26,56 @@ def init_google_ai():
     except Exception as e:
         st.error(f"❌ Error saat menginisialisasi Google AI: {str(e)}")
         st.stop()
+
+def generate_content(topic, model, length, genre):
+    """
+    Generate konten menggunakan Google Gemini AI
+    """
+    try:
+        prompt = f"""
+        Buatkan konten cerita yang menarik tentang topik: "{topic}"
+        
+        Format konten:
+        1. Judul yang catchy
+        2. Pendahuluan singkat
+        3. Sedikit cerita yang menarik
+        4. Dengan genre {genre}
+        5. harus ada aktor/pemeran
+        6. sesekali ada seperti percakapan dan mungkin tulisan seperti suara haaaaa
+        
+        Konten harus:
+        - Mudah dipahami
+        - Menghibur bagi semua usia
+        - Panjang sekitar {length} kata
+        
+        Gunakan bahasa Indonesia yang baik dan benar.
+        """
+        
+        # ✅ hanya kirim prompt ke model
+        response = model.generate_content(prompt)
+        return response.text
+    
+    except Exception as e:
+        return f"❌ Terjadi error saat generate konten: {str(e)}"
+
 def run():
+    """
+    Stage 4: Add AI Integration
+    Menambahkan integrasi penuh dengan Google Gemini AI
+    """
+    
+    # Konfigurasi halaman
+    st.set_page_config(
+        page_title="Icang AI",
+        page_icon="🚀"
+    )
+    
+    # Judul aplikasi
+    st.title("AI MY Kisah Generator 🚀")
+    
+    # Teks pembuka
+    st.write("Anda bisa generate Cerita yang anda mau dengan judul dan genre yang dapat di sesuaikan")
+    
     with st.sidebar:
         st.title("📂 Navigasi")
         st.divider()
@@ -55,3 +104,44 @@ def run():
     elif halaman == "matematika":
         from pages.matematika import run_matematika
         run_matematika()
+
+        st.divider()
+            
+    # Inisialisasi Google AI
+    model = init_google_ai()
+    
+    st.divider()
+    
+    col1,col2 = st.columns(2)
+
+    with col1:
+        length = st.slider(
+            "Pilih panjang konten",
+            min_value=200,
+            max_value=500,
+            value=100,
+            step=10
+        )
+    with col2:
+        genre = st.selectbox("Pilih AI Generate :", ["Horror", "Komedi", "Serius"])
+
+    # Input teks dari user
+    user_topic = st.text_input(
+        "📝 Masukkan judul cerita:",
+        placeholder="Contoh: Teror pocong merah, Main bareng teman, dll."
+    )
+    
+    # Tombol untuk generate konten
+    if st.button("🔥 Generate Konten", type="primary"):
+        if not user_topic.strip():
+            st.warning("⚠ Mohon masukkan topik terlebih dahulu!")
+        else:
+            # Generate konten menggunakan AI
+            with st.spinner("🤖 AI sedang bekerja keras membuat Cerita untuk Anda..."):
+                hasil_konten = generate_content(user_topic, model, length, genre)
+            
+            st.subheader("🤖 Hasil Cerita :")
+            st.info(hasil_konten)
+
+if __name__ == "__main__":
+    run()
