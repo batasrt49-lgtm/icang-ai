@@ -27,37 +27,6 @@ def init_google_ai():
         st.error(f"❌ Error saat menginisialisasi Google AI: {str(e)}")
         st.stop()
 
-def generate_content(topic, model, length, genre):
-    """
-    Generate konten menggunakan Google Gemini AI
-    """
-    try:
-        prompt = f"""
-        Buatkan konten cerita yang menarik tentang topik: "{topic}"
-        
-        Format konten:
-        1. Judul yang catchy
-        2. Pendahuluan singkat
-        3. Sedikit cerita yang menarik
-        4. Dengan genre {genre}
-        5. harus ada aktor/pemeran
-        6. sesekali ada seperti percakapan dan mungkin tulisan seperti suara haaaaa
-        
-        Konten harus:
-        - Mudah dipahami
-        - Menghibur bagi semua usia
-        - Panjang sekitar {length} kata
-        
-        Gunakan bahasa Indonesia yang baik dan benar.
-        """
-        
-        # ✅ hanya kirim prompt ke model
-        response = model.generate_content(prompt)
-        return response.text
-    
-    except Exception as e:
-        return f"❌ Terjadi error saat generate konten: {str(e)}"
-
 def run():
     """
     Stage 4: Add AI Integration
@@ -145,3 +114,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+
