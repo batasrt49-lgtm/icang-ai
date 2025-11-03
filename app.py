@@ -5,22 +5,13 @@ import google.generativeai as genai
 
 @st.cache_resource
 def init_google_ai():
-    """
-    Inisialisasi Google AI dengan cache
-    """
     try:
-        # Load environment variables
         load_dotenv()
-        
         api_key = os.getenv("GOOGLE_API_KEY")
         if not api_key:
             st.error("⚠ Google API Key tidak ditemukan! Silakan tambahkan ke file .env")
             st.stop()
-        
-        # Configure Google AI
         genai.configure(api_key=api_key)
-        
-        # Initialize model
         model = genai.GenerativeModel('gemini-2.5-flash')
         return model
     except Exception as e:
@@ -28,27 +19,21 @@ def init_google_ai():
         st.stop()
 
 def run():
-    """
-    Stage 4: Add AI Integration
-    Menambahkan integrasi penuh dengan Google Gemini AI
-    """
-    
-    # Konfigurasi halaman
     st.set_page_config(
         page_title="Icang AI",
         page_icon="🚀"
     )
-    
+
     with st.sidebar:
         st.title("📂 Navigasi")
         st.divider()
         st.write("Pilih halaman:")
 
-        # Pakai session_state untuk pindah halaman
+        # Gunakan key yang konsisten
         if st.button("📰 Cari Berita"):
-            st.session_state["utama"] = "info"
+            st.session_state["halaman"] = "info"
 
-        if st.button("📰 Buat Cerita"):
+        if st.button("📝 Buat Cerita"):
             st.session_state["halaman"] = "cerita"
 
         if st.button("🧮 Hitung Matematika"):
@@ -56,12 +41,13 @@ def run():
 
         st.divider()
 
+    # Inisialisasi Google AI sekali saja
     model = init_google_ai()
 
     # Routing manual
-    halaman = st.session_state.get("halaman", "utama")
+    halaman = st.session_state.get("halaman", "info")
 
-    if halaman == "utama":
+    if halaman == "info":
         from pages.info import run_info
         run_info()
     elif halaman == "cerita":
@@ -71,17 +57,7 @@ def run():
         from pages.matematika import run_matematika
         run_matematika()
 
-        st.divider()
-            
-    # Inisialisasi Google AI
-    model = init_google_ai()
+    st.divider()
 
 if __name__ == "__main__":
     run()
-
-
-
-
-
-
-
