@@ -27,26 +27,26 @@ def init_google_ai():
         st.error(f"❌ Error saat menginisialisasi Google AI: {str(e)}")
         st.stop()
 
-def generate_content(topic, model, length, genre):
+def generate_content(topic, model):
     """
     Generate konten menggunakan Google Gemini AI
     """
     try:
         prompt = f"""
-        Buatkan konten cerita yang menarik tentang topik: "{topic}"
+        Buatkan konten yang menarik dan informatif tentang topik: "{topic}"
         
         Format konten:
         1. Judul yang catchy
         2. Pendahuluan singkat
-        3. Sedikit cerita yang menarik
-        4. Dengan genre {genre}
-        5. harus ada aktor/pemeran
-        6. sesekali ada seperti percakapan dan mungkin tulisan seperti suara haaaaa
+        3. 3-5 poin utama dengan penjelasan
+        4. Kesimpulan
+        5. Call to action
         
         Konten harus:
         - Mudah dipahami
-        - Menghibur bagi semua usia
-        - Panjang sekitar {length} kata
+        - Informatif dan berguna
+        - Engaging untuk pembaca
+        - Panjang sekitar 200-300 kata
         
         Gunakan bahasa Indonesia yang baik dan benar.
         """
@@ -71,10 +71,10 @@ def run():
     )
     
     # Judul aplikasi
-    st.title("AI MY Kisah Generator 🚀")
+    st.title("Icang AI 🚀")
     
     # Teks pembuka
-    st.write("Anda bisa generate Cerita yang anda mau dengan judul dan genre yang dapat di sesuaikan")
+    st.write("Ayo beritahu apa yang anda mau")
     
     with st.sidebar:
         st.title("ICANG AI")
@@ -94,36 +94,27 @@ def run():
     model = init_google_ai()
     
     st.divider()
-    
-    col1,col2 = st.columns(2)
-
-    with col1:
-        length = st.slider(
-            "Pilih panjang konten",
-            min_value=200,
-            max_value=500,
-            value=100,
-            step=10
-        )
-    with col2:
-        genre = st.selectbox("Pilih AI Generate :", ["Horror", "Komedi", "Serius"])
 
     # Input teks dari user
     user_topic = st.text_input(
-        "📝 Masukkan judul cerita:",
-        placeholder="Contoh: Teror pocong merah, Main bareng teman, dll."
+        "📝 Berikan saya arahan:",
+        placeholder="Contoh: Tips Belajar Python, Manfaat AI dalam Bisnis, dll."
     )
     
+    # Tampilkan topik yang dimasukkan user
+    if user_topic:
+        st.write(f"*Topik yang akan diproses:* {user_topic}")
+    
     # Tombol untuk generate konten
-    if st.button("🔥 Generate Konten", type="primary"):
+    if st.button("Mulai mencari", type="primary"):
         if not user_topic.strip():
-            st.warning("⚠ Mohon masukkan topik terlebih dahulu!")
+            st.warning("⚠ Mohon masukkan prompt terlebih dahulu!")
         else:
             # Generate konten menggunakan AI
-            with st.spinner("🤖 AI sedang bekerja keras membuat Cerita untuk Anda..."):
-                hasil_konten = generate_content(user_topic, model, length, genre)
+            with st.spinner("🤖 AI sedang bekerja keras..."):
+                hasil_konten = generate_content(user_topic, model)
             
-            st.subheader("🤖 Hasil Cerita :")
+            st.subheader("🤖 Hasil Konten:")
             st.info(hasil_konten)
 
 if __name__ == "__main__":
