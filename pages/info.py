@@ -75,11 +75,7 @@ def run_info():
     
     # Teks pembuka
     st.write("Ayo beritahu apa yang anda mau")
-    
-    with st.sidebar:
-        if st.button("⬅ Kembali ke Beranda"):
-            st.session_state["halaman"] = "utama"
-            
+           
     # Inisialisasi Google AI
     model = init_google_ai()
     
@@ -108,4 +104,5 @@ def run_info():
             st.info(hasil_konten)
 
 if __name__ == "__main__":
+
     run()
